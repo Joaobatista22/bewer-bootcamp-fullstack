@@ -15,8 +15,7 @@ const ProductList = ({ title, products }: ProductListProps) => {
   return (
     <div className="space-y-6">
       <h3 className="px-5 font-semibold">{title}</h3>
-      <div className="flex w-full gap-4 
-      px-5 ">
+      <div className="flex w-full gap-4 px-5 bg-white dark:bg-gray-800 overflow-x-auto">
         {products.map((product) => (
           <ProductItem key={product.id} product={product} />
         ))}

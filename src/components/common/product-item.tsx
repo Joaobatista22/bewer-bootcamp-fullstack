@@ -28,7 +28,7 @@ const ProductItem = ({ product, textContainerClassName }: ProductItemProps) => {
   }
 
   return (
-    <Link href={`/produto/${product.id}`} className="flex flex-col gap-4">
+    <Link href={`/product-variant/${firstVariant.slug}`} className="flex flex-col gap-4">
       <Image
         src={imageUrl}
         alt={`${product.name} - ${firstVariant.name}`}

@@ -8,7 +8,6 @@ import { authClient } from "@/lib/auth-client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
-import { Separator } from "../ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -18,17 +17,15 @@ import {
 } from "../ui/sheet";
 import { Cart } from "./cart";
 
-
-
 export const Header = () => {
   const { data: session } = authClient.useSession();
-
   return (
     <header className="flex items-center justify-between p-5">
       <Link href="/">
         <Image src="/logo.svg" alt="BEWEAR" width={100} height={26.14} />
       </Link>
-      <div className="flex items-center gap-4">
+
+      <div className="flex items-center gap-3">
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon">
@@ -37,7 +34,7 @@ export const Header = () => {
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
-              <SheetTitle>Menu</SheetTitle>        
+              <SheetTitle>Menu</SheetTitle>
             </SheetHeader>
             <div className="px-5">
               {session?.user ? (
@@ -71,7 +68,7 @@ export const Header = () => {
                   </div>
                 </>
               ) : (
-                <div className="flex items-center justify-between p-5">
+                <div className="flex items-center justify-between">
                   <h2 className="font-semibold">Olá. Faça seu login!</h2>
                   <Button size="icon" asChild variant="outline">
                     <Link href="/authentication">
@@ -80,27 +77,10 @@ export const Header = () => {
                   </Button>
                 </div>
               )}
-              <div className="h-px bg-primary">
-                {" "}
-              </div>
-              <div className="mt-5">
-              <Link href="/">
-                      <p className="font-extralight">Inicio</p>
-             </Link>
-             </div>
-              <div className="mt-2">
-              <Link href="/my-orders">
-                      <p className="font-extralight">Meus Pedidos</p>
-             </Link>
-             <Separator className="my-15" />
-
-             </div>
             </div>
           </SheetContent>
         </Sheet>
-        
         <Cart />
-
       </div>
     </header>
   );

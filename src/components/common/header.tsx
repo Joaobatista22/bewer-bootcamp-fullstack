@@ -4,6 +4,7 @@ import { LogInIcon, LogOutIcon, MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { categoryTable } from "@/db/schema";
 import { authClient } from "@/lib/auth-client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
@@ -16,14 +17,21 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import { Cart } from "./cart";
+import CategorySelector from "./category-selector";
+
+interface CategorySelectorProps {
+  categories: (typeof categoryTable.$inferSelect)[];
+}
 
 export const Header = () => {
   const { data: session } = authClient.useSession();
   return (
     <header className="flex items-center justify-between p-5">
-      <Link href="/">
-        <Image src="/logo.svg" alt="BEWEAR" width={100} height={26.14} />
-      </Link>
+      <div className="px-5">
+        <Link href="/">
+          <Image src="/logo.svg" alt="BEWEAR" width={100} height={26.14} />
+        </Link>
+      </div>
 
       <div className="flex items-center gap-3">
         <Sheet>
@@ -70,13 +78,20 @@ export const Header = () => {
               ) : (
                 <div className="flex items-center justify-between">
                   <h2 className="font-semibold">Olá. Faça seu login!</h2>
-                  <Button size="icon" asChild variant="outline">
-                    <Link href="/authentication">
-                      <LogInIcon />
-                    </Link>
-                  </Button>
                 </div>
               )}
+              
+              <div className="mt-6 flex flex-col gap-4">
+                <Link href="/category/acessrios">
+                  <p className="">Acéssorios</p>
+                </Link>
+                <Link href="/category/calas">
+                  <p>Calças</p>
+                </Link>
+                <Link href="/category/camisetas">
+                  <p>Camisetas</p>
+                </Link>
+              </div>
             </div>
           </SheetContent>
         </Sheet>
